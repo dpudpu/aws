@@ -7,6 +7,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FailTest {
     @Test
     void name() {
-        assertThat(1).isEqualTo(1)
+        assertThat(1).isEqualTo(3);
     }
 }
