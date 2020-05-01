@@ -1,4 +1,3 @@
-
 name: AWS
 
 on:
@@ -9,34 +8,34 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+      - uses: actions/checkout@master
 
-    - name: Run a one-line script
-      run: echo start build
-      
-    - uses: actions/setup-java@v1
-      with:
-        java-version: 11
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: build with Gradle
-      run: ./gradlew clean build
-      
+      - name: Run a one-line script
+        run: echo start build
+
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: build with Gradle
+        run: ./gradlew clean build
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
-     - name : zip aws
-       run: |
-        zip -r aws . -i *
-        mkdir -p deploy
-        mv aws.zip deploy/aws.zip
+      - name: zip aws
+        run: |
+          zip -r aws.zip build/libs/*
+          mkdir -p deploy
+          mv aws.zip deploy/aws.zip
 
-     - name : Upload to S3
-       uses: actions/checkout@master
-       env:
-        AWS_S3_BUCKET: dpudpu-github
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ap-northeast-2
-        SOURCE_DIR: "deploy"
+      - name: Upload to S3
+        uses: actions/checkout@master
+        env:
+          AWS_S3_BUCKET: dpudpu-github
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-northeast-2
+          SOURCE_DIR: "deploy"
