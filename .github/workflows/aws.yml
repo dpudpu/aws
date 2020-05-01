@@ -26,6 +26,7 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@master
+        
       - name: zip aws
         run: |
           echo $(ls)
@@ -36,6 +37,7 @@ jobs:
           mv aws.zip deploy/aws.zip
 
       - name: Upload to S3
+        uses: actions/checkout@master
         env:
           AWS_S3_BUCKET: dpudpu-github
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
