@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: zip aws
         run: |
-          pwd
+          echo $(pwd)
           zip -r aws.zip build/libs/*
           mkdir -p deploy
           mv aws.zip deploy/aws.zip
