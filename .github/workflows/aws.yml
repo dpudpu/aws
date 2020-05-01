@@ -30,7 +30,7 @@ jobs:
           echo $(pwd)
           echo $(ls)
           echo $(ls ../)
-          zip -r aws.zip build/libs/*
+          zip -r aws.zip ../*
           mkdir -p deploy
           mv aws.zip deploy/aws.zip
 
