@@ -29,10 +29,8 @@ jobs:
         
       - name: zip aws
         run: |
-          echo $(ls)
-          echo "-----------------------"
-          ls
-          zip -r aws.zip build/libs/*
+          echo $(ls -al)
+          zip -r aws.zip *
           mkdir -p deploy
           mv aws.zip deploy/aws.zip
 
