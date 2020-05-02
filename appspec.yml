@@ -1,6 +1,0 @@
-version: 0.0
-os: linux
-files: # source to destination
-  - source: /
-    destination: /home/ec2-user/app/aws/zip/
-    overwite: yes

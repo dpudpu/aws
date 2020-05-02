@@ -21,11 +21,16 @@ jobs:
       - name: build with Gradle
         run: ./gradlew clean build -x test
 
-      - name: zip jar
+      - name: Zip for deploy
         run: |
-          zip -r aws.zip *
-          mkdir -p deploy
-          mv aws.zip deploy/aws.zip
+          mkdir -p before-deploy/
+          cp appspec/scripts/*sh before-deploy/
+          cp appspec/appspec.yml before-deploy/
+          cp build/libs/* before-deploy/
+          cd before-deploy && zip -r aws.zip *
+          cd ../ && mkdir -p deploy
+          mv before-deploy/aws.zip deploy/aws.zip
+
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
