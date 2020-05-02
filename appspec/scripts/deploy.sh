@@ -9,7 +9,7 @@ echo "> build 파일 복사"
 cp $REPOSITORY/$PROJECT_NAME/zip/*.jar $REPOSITORY/$PROJECT_NAME
 
 echo "> 현재 구동중인 애플리케이션 pid 확인"
-CURRENT_PID=$(pgrep -fl ${PROJECT_NAME}*.jar)
+CURRENT_PID=$(pgrep -fl ${PROJECT_NAME})
 
 echo "현재 구동 중인 애플리케이션 pid: $CURRENT_PID"
 if [ -z $CURRENT_PID ]; then
@@ -27,5 +27,5 @@ echo ">Jar Name: $JAR_NAME"
 echo ">$JAR_NAME 에 실행권한 추가"
 chmod +x $JAR_NAME
 
-eho ">$JAR_NAME 실행"
+echo ">$JAR_NAME 실행"
 nohup java -jar $REPOSITORY/$JAR_NAME 2>&1 &
