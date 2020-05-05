@@ -3,13 +3,4 @@ aws:
     prefix: /dev
     enabled: true
     name: exercise
-
-spring:
-  profiles:
-    active: local
----
-spring:
-  profiles: local
-aws:
-  paramstore:
-    enabled: false
+    profileSeparator: _
