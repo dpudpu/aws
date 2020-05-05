@@ -1,0 +1,5 @@
+aws:
+  paramstore:
+    prefix: /dev
+    enabled: true
+    name: exercise
