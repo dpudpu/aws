@@ -1,6 +1,5 @@
 aws:
   paramstore:
-    prefix: /dev
+    prefix: /config
     enabled: true
     name: exercise
-    profileSeparator: _
