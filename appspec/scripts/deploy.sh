@@ -5,18 +5,11 @@ PROJECT_NAME=aws
 
 cd $REPOSITORY/$PROJECT_NAME/
 
-echo "> git pull"
-git pull
-
-echo "> build"
-./gradlew clean build -x test
-cd $REPOSITORY
-
 echo "> build 파일 복사"
-cp $REPOSITORY/$PROJECT_NAME/build/libs/*.jar $REPOSITORY/
+cp $REPOSITORY/$PROJECT_NAME/zip/*.jar $REPOSITORY/$PROJECT_NAME
 
 echo "> 현재 구동중인 애플리케이션 pid 확인"
-CURRENT_PID=$(pgrep -f ${PROJECT_NAME}*.jar)
+CURRENT_PID=$(pgrep -fl ${aws})
 
 echo "현재 구동 중인 애플리케이션 pid: $CURRENT_PID"
 if [ -z $CURRENT_PID ]; then
@@ -29,6 +22,10 @@ fi
 
 echo "> 새 애플리케이션 배포"
 JAR_NAME=$(ls -tr $REPOSITORY/ |grep *.jar | tail -n 1)
-
 echo ">Jar Name: $JAR_NAME"
+
+echo ">$JAR_NAME 에 실행권한 추가"
+chmod +x $JAR_NAME
+
+echo ">$JAR_NAME 실행"
 nohup java -jar $REPOSITORY/$JAR_NAME 2>&1 &
