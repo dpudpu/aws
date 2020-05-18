@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/webapi/v1/params-store")
 public class ParameterStoreController {
-    @Value("${username}")
+    @Value("${common.username}")
     private String username;
-    @Value("${password}")
+    @Value("${common.password}")
     private String password;
 
     @GetMapping
