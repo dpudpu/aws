@@ -6,7 +6,3 @@ spring:
         format_sql: true
     hibernate:
       ddl-auto: create-drop
-
-common:
-  username: ${username}
-  password: ${password}
