@@ -6,6 +6,12 @@ spring:
         format_sql: true
     hibernate:
       ddl-auto: create-drop
+common:
+  username: dpudpu
+  password: dpudpu
+
+---
+spring.profiles: prod
 
 common:
   username: ${username}

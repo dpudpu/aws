@@ -1,5 +1,12 @@
+---
+spring:
+  profiles: prod
 aws:
   paramstore:
     prefix: /config
     enabled: true
     name: exercise
+---
+aws:
+  paramstore:
+    enabled: false
