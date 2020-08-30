@@ -9,7 +9,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ParameterStoreControllerTest {
 
     @Autowired
@@ -17,7 +17,7 @@ class ParameterStoreControllerTest {
 
     @Test
     void name() {
-        webTestClient.get().uri("/webapi/v1/parameter-store")
+        webTestClient.get().uri("/webapi/v1/params-store")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk();
